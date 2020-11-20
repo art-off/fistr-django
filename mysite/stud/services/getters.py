@@ -47,12 +47,11 @@ def get_rate_organizers() -> [RateItem]:
     for o in Organizer.objects.all():
         result.append(RateItem(o.id, o.name, 0))
 
-    for e in Event.objects.all():
-        e_cost = __calc_cost(e)
-        for o in e.organizers.all():
-            for i in range(len(result)):
-                if result[i].id == o.id:
-                    result[i].score_count += e_cost
+    for i, o in enumerate(result):
+        o_events = Event.objects.filter(organizers__id=o.id)
+        for e in o_events:
+            result[i].score_count += __calc_cost(e)
+
 
     result.sort(key=lambda x: x.score_count, reverse=True)
     return result

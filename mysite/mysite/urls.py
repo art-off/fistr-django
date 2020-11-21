@@ -27,7 +27,7 @@ urlpatterns += [
 
 from django.views.generic import RedirectView
 urlpatterns += [
-    path('', RedirectView.as_view(url='/stud/', permanent=True))
+    path('', RedirectView.as_view(url='/admin/', permanent=True))
 ]
 
 from django.conf import settings

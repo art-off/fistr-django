@@ -1,3 +1,4 @@
-[Python]
-version=3.8
-web: gunicorn mysite.wsgi --log-file -
+[requires]
+python_version = "3.8"
+
+web: gunicorn server.wsgi --log-file -
